@@ -68,6 +68,8 @@ ENTRYPOINT [ "./init-TerrariaServer-amd64.sh" ]
 
 FROM mono:latest AS build-arm64
 
+RUN apt-get update && apt-get install -y screen && rm -rf /var/lib/apt/lists/*
+
 ENV TERRARIA_DIR=/root/.local/share/Terraria
 
 ENV PATH="${TERRARIA_DIR}:${PATH}" \
