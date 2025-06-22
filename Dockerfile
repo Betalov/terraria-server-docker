@@ -19,7 +19,7 @@ RUN chmod +x \
     init-TerrariaServer-amd64.sh \
     init-TerrariaServer-arm64.sh
 
-RUN apt-get update -y && apt-get install -y unzip wget screen
+RUN apt-get update -y && apt-get install -y unzip wget
 
 RUN if [ "${TERRARIA_VERSION:-latest}" = "latest" ]; then \
     echo "using latest version." \
@@ -68,8 +68,6 @@ ENTRYPOINT [ "./init-TerrariaServer-amd64.sh" ]
 
 FROM mono:latest AS build-arm64
 
-RUN apt-get update && apt-get install -y screen && rm -rf /var/lib/apt/lists/*
-
 ENV TERRARIA_DIR=/root/.local/share/Terraria
 
 ENV PATH="${TERRARIA_DIR}:${PATH}" \
@@ -88,6 +86,8 @@ ENV PATH="${TERRARIA_DIR}:${PATH}" \
     upnp=1 \
     npcstream=1 \
     priority=1
+
+RUN apt-get update && apt-get install -y screen && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p ${TERRARIA_DIR}
 
