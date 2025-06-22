@@ -2,4 +2,4 @@
 
 ./create-server-config.sh;
 
-screen -dmS tml mono --server --gc=sgen -O=all ./TerrariaServer.exe -config server-config.conf
+screen -dmS terraria-server mono --server --gc=sgen -O=all ./TerrariaServer.exe -config server-config.conf
